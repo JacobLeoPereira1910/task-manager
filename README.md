@@ -23,12 +23,12 @@ Projeto de avaliação para vaga de Desenvolvedor Fullstack. Sistema completo de
 git clone https://github.com/JacobLeoPereira1910/task-manager
 cd task-manager
 docker-compose up --build
-Após subir, acesse em: http://localhost:9000
+
 ```
 
 
 
-Após subir, acesse em: http://localhost:9000
+Após subir, acesse em: http://localhost:9000/login.html
 
 Login
 A autenticação está implementada com JWT.
