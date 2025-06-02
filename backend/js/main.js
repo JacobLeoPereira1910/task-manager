@@ -1,3 +1,10 @@
+const token = localStorage.getItem("token");
+if (!token || token.split('.').length !== 3) {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+  throw new Error("Token inválido ou ausente");
+}
+
 import { fetchApi } from "./fetch.js";
 import { visual } from "./visual.js";
 import { state } from "./state.js";
