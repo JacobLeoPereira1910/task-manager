@@ -1,15 +1,9 @@
-const token = localStorage.getItem("token");
-if (!token || token.split('.').length !== 3) {
-  localStorage.removeItem("token");
-  window.location.href = "login.html";
-  throw new Error("Token inválido ou ausente");
-}
-
 import { fetchApi } from "./fetch.js";
 import { visual } from "./visual.js";
 import { state } from "./state.js";
 import { filterAndSortTasks } from "./filter.js";
 import { showAlert } from "./alerts.js";
+
 
 async function loadAndRender() {
   try {
@@ -33,6 +27,14 @@ async function refreshTasks() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  const token = localStorage.getItem("jwt_token");
+  if (!token || token.split('.').length !== 3) {
+    localStorage.removeItem("jwt_token");
+    window.location.href = "login.html";
+    throw new Error("Token inválido ou ausente");
+  }
+
   await loadAndRender();
   visual.bindFilterAndSortControls(loadAndRender);
 
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const editForm = document.getElementById("edit-form");
   if (editForm) {
     editForm.addEventListener("submit", async (event) => {
-      e.preventDefault();
+      event.preventDefault();
       const id = document.getElementById("edit-id").value;
       const title = document.getElementById("edit-title").value.trim();
       const description = document.getElementById("edit-description").value.trim();
