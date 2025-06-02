@@ -3,7 +3,7 @@
   "description": "TaskManager desenvolvido por Leonardo Jacob",
   "type": "project",
   "require": {
-    "firebase/php-jwt": "^5.5"
+    "firebase/php-jwt": "^6.3"
   },
   "authors": [
     {
