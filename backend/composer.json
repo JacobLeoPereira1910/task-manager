@@ -1,0 +1,13 @@
+{
+  "name": "root/html",
+  "description": "TaskManager desenvolvido por Leonardo Jacob",
+  "type": "project",
+  "require": {
+    "firebase/php-jwt": "^6.0"
+  },
+  "authors": [
+    {
+      "name": "Leonardo Jacob"
+    }
+  ]
+}
