@@ -28,12 +28,16 @@ docker-compose up --build
 
 
 
-Após subir, acesse em: http://localhost:9000/login.html
+Após subir, acesse em: http://localhost:9000
 
 Login
+
 A autenticação está implementada com JWT.
 
 Usuário: tecsa
+
+
+
 Senha: tecsa
 
 Os dados estão hardcoded propositalmente em login.php para facilitar testes e avaliação. O token JWT é armazenado no localStorage após o login e usado nas requisições autenticadas.
