@@ -3,25 +3,25 @@ FROM php:7.4-apache
 # Instala extensões necessárias
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Instala Composer
-RUN apt-get update && apt-get install -y unzip curl \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+# Instala dependências para composer (unzip, curl, git)
+RUN apt-get update && apt-get install -y unzip curl git
 
-# Copia o projeto
+# Instala Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copia os arquivos da aplicação para o container
 COPY . /var/www/html/
 
-# Define diretório
-WORKDIR /var/www/html
+# Define o diretório de trabalho
+WORKDIR /var/www/html/
 
-# Roda o composer install baseado no lock
-RUN composer install
-
-# Permissões
+# Permissões para o Apache
 RUN chown -R www-data:www-data /var/www/html
 
-# Ativa mod_rewrite do Apache
+# Ativa mod_rewrite
 RUN a2enmod rewrite
 
-# Copia .htaccess (se não veio junto acima)
-COPY .htaccess /var/www/html/.htaccess
+# Roda composer install dentro do container para garantir compatibilidade
+RUN composer install --no-interaction --optimize-autoloader --no-dev
+
+EXPOSE 80
